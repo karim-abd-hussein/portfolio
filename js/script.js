@@ -272,6 +272,85 @@ $(document).ready(function() {
         `)
         .appendTo('head');
 
+    // Project details functionality
+    window.showProjectDetails = function(projectName) {
+        const projectDetails = {
+            teacherprivate: {
+                title: 'Teacher Private Platform',
+                description: 'A comprehensive educational platform that underwent complete modernization from legacy codebase to modern architecture.',
+                challenges: ['Legacy codebase refactoring', 'API integration for mobile sync', 'Performance optimization', 'Team collaboration'],
+                solutions: ['Complete MVC pattern implementation', 'RESTful API development', 'Database optimization', 'AI-powered code generation for faster development'],
+                results: ['Improved performance by 60%', 'Enhanced user experience', 'Mobile app integration', 'Reduced maintenance costs', '40% faster development with AI tools']
+            },
+            daafoor: {
+                title: 'Daafoor Marketplace',
+                description: 'Large-scale educational marketplace connecting tutors with students through digital learning resources.',
+                challenges: ['Payment gateway integration', 'Content management system', 'User role management', 'Scalability concerns'],
+                solutions: ['Stripe payment integration', 'Custom CMS development', 'Role-based access control', 'AI-assisted rapid prototyping'],
+                results: ['100K+ learning resources', '5K+ active tutors', '24/7 platform availability', 'Automated payment processing', '35% faster time-to-market with AI tools']
+            },
+            edutor: {
+                title: 'Edutor SaaS Platform',
+                description: 'Multi-tenant SaaS CMS platform designed specifically for tutors to create their own branded websites.',
+                challenges: ['Multi-tenant architecture', 'Template engine development', 'Affiliate system implementation', 'Subscription management'],
+                solutions: ['Data isolation architecture', 'Customizable template system', 'Real-time commission tracking', 'AI-enhanced development workflow'],
+                results: ['10+ professional templates', 'Automated subscription billing', 'Real-time affiliate tracking', 'White-label solution', '50% reduction in development time with AI tools']
+            }
+        };
+
+        const project = projectDetails[projectName];
+        if (!project) return;
+
+        // Create modal content
+        const modalContent = `
+            <div class="modal fade" id="projectModal" tabindex="-1">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">${project.title}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p class="lead">${project.description}</p>
+                            
+                            <div class="row mt-4">
+                                <div class="col-md-4">
+                                    <h6><i class="fas fa-exclamation-triangle text-warning me-2"></i>Challenges</h6>
+                                    <ul class="small">
+                                        ${project.challenges.map(challenge => `<li>${challenge}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6><i class="fas fa-lightbulb text-info me-2"></i>Solutions</h6>
+                                    <ul class="small">
+                                        ${project.solutions.map(solution => `<li>${solution}</li>`).join('')}
+                                    </ul>
+                                </div>
+                                <div class="col-md-4">
+                                    <h6><i class="fas fa-chart-line text-success me-2"></i>Results</h6>
+                                    <ul class="small">
+                                        ${project.results.map(result => `<li>${result}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
+        // Remove existing modal if any
+        $('#projectModal').remove();
+
+        // Add modal to body and show
+        $('body').append(modalContent);
+        const modal = new bootstrap.Modal(document.getElementById('projectModal'));
+        modal.show();
+    };
+
     // Console welcome message
     console.log('%c Welcome to Karim Abd Hussein Portfolio! ', 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 16px; padding: 10px; border-radius: 5px;');
     console.log('%c Feel free to explore my projects and skills! ', 'background: #0d6efd; color: white; font-size: 14px; padding: 8px; border-radius: 3px;');
