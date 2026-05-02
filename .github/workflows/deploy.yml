@@ -44,8 +44,4 @@ jobs:
       run: |
         echo "🚀 Deployment completed successfully!"
         echo "Files deployed to: ${{ secrets.FTP_SERVER }}"
-        if [ "${{ secrets.WEBHOOK_URL }}" ]; then
-          curl -X POST -H 'Content-type: application/json' \
-            --data '{"text":"Portfolio deployed successfully to InfinityFree!"}' \
-            "${{ secrets.WEBHOOK_URL }}"
-        fi
+        echo "🌐 Portfolio is live at: https://if0_41809174.epizy.com"
