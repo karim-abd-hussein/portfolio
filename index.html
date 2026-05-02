@@ -13,8 +13,51 @@
     <link rel="stylesheet" href="/css/icons.css">
     <!-- AOS Animation -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- Custom CSS - Absolute Path -->
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom CSS - Multiple Loading Strategies -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <style>
+        /* Critical fallback styles */
+        .project-card {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 100%);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            margin-bottom: 1.5rem;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        .project-card .card-header {
+            background: linear-gradient(135deg, #0d6efd, #ff6b6b);
+            color: white;
+            padding: 1.5rem;
+            font-weight: 700;
+        }
+        .project-card .card-body {
+            padding: 1.5rem;
+        }
+        .tech-tags .badge {
+            background: #e9ecef;
+            color: #333;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            margin: 0.25rem;
+            font-size: 0.8rem;
+        }
+        .hero-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        .navbar {
+            background: rgba(33, 37, 41, 0.95) !important;
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
