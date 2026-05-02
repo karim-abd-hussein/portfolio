@@ -1,6 +1,15 @@
 // Custom JavaScript for Karim Abd Hussein Portfolio
 
 $(document).ready(function() {
+    console.log('Portfolio script loaded');
+    
+    // Wait a bit for everything to be ready
+    setTimeout(function() {
+        console.log('Initializing navigation after delay');
+        initNavigation();
+    }, 100);
+    
+    function initNavigation() {
     // Initialize AOS (Animate On Scroll)
     AOS.init({
         duration: 1000,
@@ -11,11 +20,24 @@ $(document).ready(function() {
     // Smooth scrolling for navigation links
     $('a[href^="#"]').on('click', function(e) {
         e.preventDefault();
-        var target = $(this.getAttribute('href'));
+        var targetId = $(this).attr('href');
+        var target = $(targetId);
+        console.log('Clicked link:', targetId, 'Target found:', target.length > 0);
+        
         if (target.length) {
-            $('html, body').stop().animate({
-                scrollTop: target.offset().top - 70
-            }, 1000, 'easeInOutExpo');
+            var navbarHeight = $('.navbar').outerHeight() || 70;
+            var targetPosition = target.offset().top - navbarHeight;
+            console.log('Target element:', target[0], 'Target offset:', target.offset().top);
+            console.log('Scrolling to:', targetPosition, 'Navbar height:', navbarHeight);
+            
+            // Fast smooth scrolling
+            $('html, body').animate({
+                scrollTop: targetPosition
+            }, 100, function() {
+                console.log('Scroll animation completed');
+            });
+        } else {
+            console.log('Target element not found for:', targetId);
         }
     });
 
@@ -44,10 +66,11 @@ $(document).ready(function() {
     // Active navigation link highlighting
     $(window).scroll(function() {
         var scrollPosition = $(window).scrollTop();
+        var navbarHeight = $('.navbar').outerHeight() || 70;
         
         $('section').each(function() {
             var target = $(this).attr('id');
-            var offset = $(this).offset().top - 100;
+            var offset = $(this).offset().top - navbarHeight - 50;
             var height = $(this).height();
             
             if (scrollPosition >= offset && scrollPosition < offset + height) {
@@ -252,6 +275,7 @@ $(document).ready(function() {
     // Console welcome message
     console.log('%c Welcome to Karim Abd Hussein Portfolio! ', 'background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; font-size: 16px; padding: 10px; border-radius: 5px;');
     console.log('%c Feel free to explore my projects and skills! ', 'background: #0d6efd; color: white; font-size: 14px; padding: 8px; border-radius: 3px;');
+    }
 });
 
 // Add scroll to top button dynamically
