@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS Debug - Karim Portfolio</title>
+    
+    <!-- Test CDN Loading -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    
+    <!-- Test Local CSS -->
+    <link rel="stylesheet" href="css/style.css" id="custom-css">
+    
+    <style>
+        .debug-section {
+            padding: 20px;
+            margin: 20px 0;
+            border: 2px solid #007bff;
+            border-radius: 8px;
+        }
+        .test-style {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center mb-4">CSS Loading Diagnostics</h1>
+        
+        <div class="debug-section">
+            <h3>1. Bootstrap CDN Test</h3>
+            <div class="alert alert-primary">If you see this styled with Bootstrap, CDN is working</div>
+            <button class="btn btn-primary">Bootstrap Button Test</button>
+        </div>
+        
+        <div class="debug-section">
+            <h3>2. Custom CSS Test</h3>
+            <div class="test-style">If you see a gradient background, custom CSS is working</div>
+            <div class="project-card" style="max-width: 300px;">
+                <div class="card-header">
+                    <h5>Test Card</h5>
+                </div>
+                <div class="card-body">
+                    <p>If this looks styled, project-card CSS is working</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="debug-section">
+            <h3>3. Font Awesome Test</h3>
+            <i class="fas fa-user fa-3x"></i> - If you see an icon, Font Awesome is working
+        </div>
+        
+        <div class="debug-section">
+            <h3>4. File Loading Status</h3>
+            <div id="status"></div>
+        </div>
+    </div>
+
+    <script>
+        // Check if files loaded
+        function checkCSS() {
+            const status = document.getElementById('status');
+            let results = '<ul>';
+            
+            // Check Bootstrap
+            const bootstrapLink = document.getElementById('bootstrap-css');
+            const bootstrapStyles = window.getComputedStyle(document.querySelector('.alert'));
+            if (bootstrapStyles.backgroundColor) {
+                results += '<li class="text-success">✓ Bootstrap CSS loaded successfully</li>';
+            } else {
+                results += '<li class="text-danger">✗ Bootstrap CSS failed to load</li>';
+            }
+            
+            // Check Custom CSS
+            const customStyles = window.getComputedStyle(document.querySelector('.test-style'));
+            if (customStyles.background && customStyles.background.includes('gradient')) {
+                results += '<li class="text-success">✓ Custom CSS loaded successfully</li>';
+            } else {
+                results += '<li class="text-danger">✗ Custom CSS failed to load</li>';
+            }
+            
+            // Check Font Awesome
+            const faStyles = window.getComputedStyle(document.querySelector('.fa'));
+            if (faStyles.fontFamily && faStyles.fontFamily.includes('FontAwesome')) {
+                results += '<li class="text-success">✓ Font Awesome loaded successfully</li>';
+            } else {
+                results += '<li class="text-danger">✗ Font Awesome failed to load</li>';
+            }
+            
+            results += '</ul>';
+            status.innerHTML = results;
+        }
+        
+        // Run checks
+        window.onload = checkCSS;
+        
+        // Log any CSS loading errors
+        window.addEventListener('error', function(e) {
+            if (e.target.tagName === 'LINK') {
+                console.error('CSS Loading Error:', e.target.href, e.message);
+            }
+        }, true);
+    </script>
+</body>
+</html>
