@@ -1,0 +1,38 @@
+/* Fallback Icons for Font Awesome */
+.icon-fallback {
+    display: inline-block;
+    width: 1em;
+    height: 1em;
+    stroke-width: 0;
+    stroke: currentColor;
+    fill: currentColor;
+    vertical-align: middle;
+}
+
+/* Icon replacements */
+.fa-envelope::before { content: "📧"; }
+.fa-phone::before { content: "📞"; }
+.fa-map-marker-alt::before { content: "📍"; }
+.fa-user::before { content: "👤"; }
+.fa-user-tie::before { content: "👨‍💼"; }
+.fa-graduation-cap::before { content: "🎓"; }
+.fa-code::before { content: "💻"; }
+.fa-layer-group::before { content: "📚"; }
+.fa-tools::before { content: "🔧"; }
+.fa-external-link-alt::before { content: "🔗"; }
+.fa-info-circle::before { content: "ℹ️"; }
+.fa-linkedin::before { content: "💼"; }
+.fa-github::before { content: "📦"; }
+.fa-arrow-up::before { content: "⬆️"; }
+.fa-lightbulb::before { content: "💡"; }
+.fa-exclamation-triangle::before { content: "⚠️"; }
+.fa-chart-line::before { content: "📈"; }
+.fa-bounce {
+    animation: bounce 1s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
