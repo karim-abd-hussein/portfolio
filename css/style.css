@@ -26,11 +26,20 @@
 
 /* Center box/hero content */
 .hero-content {
-    text-align: center;
+    text-align: left;
 }
 .hero-content h1 {
     color: white;
     font-weight: bold;
+    min-height: 1.2em;
+    display: inline-block;
+    white-space: nowrap;
+    width: 100%;
+}
+.hero-content h1 .cursor {
+    animation: blink 1s infinite;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
 }
 .hero-content h2 {
     color: rgba(255, 255, 255, 0.9);
@@ -40,6 +49,12 @@
 }
 .hero-contact p {
     color: rgba(255, 255, 255, 0.9);
+}
+
+/* Cursor blinking animation */
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
 }
 
 /* Project stats */
@@ -103,37 +118,75 @@
 /* Project actions */
 .project-actions {
     display: flex;
-    gap: 0.75rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-top: 1rem;
 }
 .project-actions .btn {
-    flex: 1;
-    border-radius: 25px;
-    padding: 0.5rem 1rem;
-    font-size: 0.875rem;
+    border-radius: 20px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.3s ease;
     border: 2px solid transparent;
+    flex: 1;
+    min-width: 100px;
+    text-align: center;
+}
+.project-actions .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 .btn-outline-primary {
-    background: transparent;
+    background: linear-gradient(135deg, rgba(13, 110, 253, 0.1), rgba(13, 110, 253, 0.05));
     border-color: #0d6efd;
     color: #0d6efd;
 }
 .btn-outline-primary:hover {
-    background: #0d6efd;
+    background: linear-gradient(135deg, #0d6efd, #0b5ed7);
     color: white;
-    transform: translateY(-2px);
+    border-color: #0d6efd;
+}
+.btn-outline-success {
+    background: linear-gradient(135deg, rgba(25, 135, 84, 0.1), rgba(25, 135, 84, 0.05));
+    border-color: #198754;
+    color: #198754;
+}
+.btn-outline-success:hover {
+    background: linear-gradient(135deg, #198754, #157347);
+    color: white;
+    border-color: #198754;
+}
+.btn-outline-info {
+    background: linear-gradient(135deg, rgba(13, 202, 240, 0.1), rgba(13, 202, 240, 0.05));
+    border-color: #0dcaf0;
+    color: #0dcaf0;
+}
+.btn-outline-info:hover {
+    background: linear-gradient(135deg, #0dcaf0, #0aa2c0);
+    color: white;
+    border-color: #0dcaf0;
 }
 .btn-outline-secondary {
-    background: transparent;
+    background: linear-gradient(135deg, rgba(108, 117, 125, 0.1), rgba(108, 117, 125, 0.05));
     border-color: #6c757d;
     color: #6c757d;
 }
 .btn-outline-secondary:hover {
-    background: #6c757d;
+    background: linear-gradient(135deg, #6c757d, #5c636a);
     color: white;
-    transform: translateY(-2px);
+    border-color: #6c757d;
+}
+
+/* Responsive button layout */
+@media (max-width: 768px) {
+    .project-actions {
+        flex-direction: column;
+    }
+    .project-actions .btn {
+        flex: none;
+        width: 100%;
+    }
 }
 
 /* Animations */

@@ -202,12 +202,65 @@ $(document).ready(function() {
         type();
     }
 
-    // Initialize typing effect on page load
+    // Initialize rotating typing effect on page load
     var heroTitle = $('.hero-content h1');
     if (heroTitle.length) {
-        var originalText = heroTitle.text();
+        var phrases = [
+            "Karim Abd Hussein",
+            "Building Web Applications",
+            "Ready to Help You",
+            "Available for Projects"
+        ];
+        var currentPhraseIndex = 0;
+        var isDeleting = false;
+        var charIndex = 0;
+        var typingSpeed = 100;
+        var deletingSpeed = 50;
+        var pauseDuration = 2000;
+        var pauseBetweenPhrases = 500;
+        
+        function typeRotatingText() {
+            var currentPhrase = phrases[currentPhraseIndex];
+            
+            if (!isDeleting) {
+                // Typing phase
+                if (charIndex < currentPhrase.length) {
+                    var displayText = currentPhrase.substring(0, charIndex + 1);
+                    heroTitle.html(displayText + '<span class="cursor">|</span>');
+                    charIndex++;
+                    setTimeout(typeRotatingText, typingSpeed);
+                } else {
+                    // Finished typing, pause before deleting
+                    heroTitle.html(currentPhrase + '<span class="cursor">|</span>');
+                    setTimeout(function() {
+                        isDeleting = true;
+                        typeRotatingText();
+                    }, pauseDuration);
+                }
+            } else {
+                // Deleting phase
+                if (charIndex > 0) {
+                    var displayText = currentPhrase.substring(0, charIndex - 1);
+                    if (displayText.length === 0) {
+                        heroTitle.html('&nbsp;<span class="cursor">|</span>');
+                    } else {
+                        heroTitle.html(displayText + '<span class="cursor">|</span>');
+                    }
+                    charIndex--;
+                    setTimeout(typeRotatingText, deletingSpeed);
+                } else {
+                    // Finished deleting, move to next phrase
+                    isDeleting = false;
+                    currentPhraseIndex = (currentPhraseIndex + 1) % phrases.length;
+                    heroTitle.html('&nbsp;<span class="cursor">|</span>');
+                    setTimeout(typeRotatingText, pauseBetweenPhrases);
+                }
+            }
+        }
+        
+        // Start the animation
         setTimeout(function() {
-            typeWriter(heroTitle, originalText, 80);
+            typeRotatingText();
         }, 500);
     }
 
@@ -276,11 +329,11 @@ $(document).ready(function() {
     window.showProjectDetails = function(projectName) {
         const projectDetails = {
             teacherprivate: {
-                title: 'Teacher Private Platform',
-                description: 'A comprehensive educational platform that underwent complete modernization from legacy codebase to modern architecture.',
-                challenges: ['Legacy codebase refactoring', 'API integration for mobile sync', 'Performance optimization', 'Team collaboration'],
-                solutions: ['Complete MVC pattern implementation', 'RESTful API development', 'Database optimization', 'AI-powered code generation for faster development'],
-                results: ['Improved performance by 60%', 'Enhanced user experience', 'Mobile app integration', 'Reduced maintenance costs', '40% faster development with AI tools']
+                title: 'Teacher Private Platform & Backend API',
+                description: 'Comprehensive educational platform with backend API for Flutter mobile app, serving 100K+ users and 50K+ teachers through web and mobile applications.',
+                challenges: ['Legacy codebase refactoring', 'Backend API integration for Flutter team', 'Performance optimization', 'Cross-platform synchronization'],
+                solutions: ['Complete MVC pattern implementation', 'REST API development for mobile app', 'Database optimization', 'Real-time sync between web and mobile'],
+                results: ['100K+ platform users', '5K+ mobile app downloads', '50K+ registered teachers', '60% performance improvement', '40% faster development with AI tools']
             },
             daafoor: {
                 title: 'Daafoor Marketplace',
